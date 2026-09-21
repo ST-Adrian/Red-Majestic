@@ -46,7 +46,60 @@ if (!esValido)
 else
 {
     // La validación fue correcta, aquí irá la lógica de Req10 (transacciones)
+    // Req10 - Obtención y visualización de transacciones
+    Console.Clear();
+
+    switch (opcion)
+    {
+        case 1:
+            // Visa - Req11
+            {
+                float[] transacciones = ObtenerTransaccionesVisa(identificador);
+                Console.WriteLine($"Movimiento de su cuenta Visa terminada en ..{ultimosCuatroDígitos}\n");
+
+                int contador = 1;
+                while (contador <= transacciones.Length)
+                {
+                    Console.WriteLine($"Transacción Nº {contador} - Monto ${transacciones[contador - 1]:F2}");
+                    contador++;
+                }
+            }
+            break;
+
+        case 2:
+            // Mastercard - Req12
+            {
+                List<float> transacciones = ObtenerTransaccionesMastercard(identificador);
+                Console.WriteLine($"Movimiento de su cuenta Mastercard terminada en ..{ultimosCuatroDígitos}\n");
+
+                int contador = 1;
+                do
+                {
+                    Console.WriteLine($"Transacción Nº {contador} - Monto ${transacciones[contador - 1]:F2}");
+                    contador++;
+                } while (contador <= transacciones.Count);
+            }
+            break;
+
+        case 3:
+            // Diners Club - Req13
+            {
+                Dictionary<int, float> transacciones = ObtenerTransaccionesDinersClub(identificador);
+                Console.WriteLine($"Movimiento de su cuenta Diners Club terminada en ..{ultimosCuatroDígitos}\n");
+
+                foreach (var elemento in transacciones)
+                {
+                    Console.WriteLine($"Transacción Nº {elemento.Key} - Monto ${elemento.Value:F2}");
+                }
+            }
+            break;
+    }
 }
+
+// Finalización - esperar que el usuario presione una tecla
+Console.WriteLine();
+Console.WriteLine("Presione cualquier tecla para finalizar...");
+Console.ReadKey();
 
 // Req6 - Validación Visa
 bool ValidarVisa(string identificador)
@@ -136,7 +189,7 @@ Dictionary<int, float> ObtenerTransaccionesDinersClub(string identificador)
 
     if (ValidarDinersClub(identificador))
     {
-        for (int i = 0; i < 5; i++)
+        for (int i = 1; i <= 5; i++)
         {
             transacciones.Add(i, GenerateRandomTransaction());
         }
