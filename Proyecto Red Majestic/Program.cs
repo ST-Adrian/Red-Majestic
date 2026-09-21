@@ -128,3 +128,19 @@ List<float> ObtenerTransaccionesMastercard(string identificador)
 
     return transacciones;
 }
+
+// Req13 - Transacciones Diners Club
+Dictionary<int, float> ObtenerTransaccionesDinersClub(string identificador)
+{
+    Dictionary<int, float> transacciones = new Dictionary<int, float>();
+
+    if (ValidarDinersClub(identificador))
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            transacciones.Add(i, GenerateRandomTransaction());
+        }
+    }
+
+    return transacciones;
+}
