@@ -112,3 +112,19 @@ float[] ObtenerTransaccionesVisa(string identificador)
 
     return transacciones;
 }
+
+// Req12 - Transacciones Mastercard
+List<float> ObtenerTransaccionesMastercard(string identificador)
+{
+    List<float> transacciones = new List<float>();
+
+    if (ValidarMastercard(identificador))
+    {
+        for (int i = 0; i < 5; i++)
+        {
+            transacciones.Add(GenerateRandomTransaction());
+        }
+    }
+
+    return transacciones;
+}
