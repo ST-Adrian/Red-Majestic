@@ -24,3 +24,48 @@ string identificador = numeroTarjeta.Substring(0, 4);
 
 // Req4 - Últimos cuatro dígitos como string
 string ultimosCuatroDígitos = numeroTarjeta.Substring(numeroTarjeta.Length - 4);
+
+// Validar la tarjeta
+bool esValido = ValidarTarjeta(identificador, opcion);
+
+// Req6 - Validación Visa
+bool ValidarVisa(string identificador)
+{
+    const string IDENTIFICADOR_VISA = "4407";
+    return identificador == IDENTIFICADOR_VISA;
+}
+
+// Req7 - Validación Mastercard
+bool ValidarMastercard(string identificador)
+{
+    const string IDENTIFICADOR_MASTERCARD = "3890";
+    return identificador == IDENTIFICADOR_MASTERCARD;
+}
+
+// Req8 - Validación Diners Club
+bool ValidarDinersClub(string identificador)
+{
+    const string IDENTIFICADOR_DINERS = "7401";
+    return identificador == IDENTIFICADOR_DINERS;
+}
+
+// Req5 - Validación general de tarjeta
+bool ValidarTarjeta(string identificador, int opcion)
+{
+    bool esValida = false;
+
+    switch (opcion)
+    {
+        case 1:
+            esValida = ValidarVisa(identificador);
+            break;
+        case 2:
+            esValida = ValidarMastercard(identificador);
+            break;
+        case 3:
+            esValida = ValidarDinersClub(identificador);
+            break;
+    }
+
+    return esValida;
+}
