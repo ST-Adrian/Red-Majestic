@@ -28,6 +28,26 @@ string ultimosCuatroDígitos = numeroTarjeta.Substring(numeroTarjeta.Length - 4)
 // Validar la tarjeta
 bool esValido = ValidarTarjeta(identificador, opcion);
 
+// Req9 - Resultado de validación
+if (!esValido)
+{
+    // La tarjeta no es válida
+    if (opcion < 1 || opcion > 3)
+    {
+        // La opción es incorrecta
+        Console.WriteLine("La opción ingresada no es válida. Inténtelo nuevamente más tarde.");
+    }
+    else
+    {
+        // La opción es válida pero la tarjeta no
+        Console.WriteLine("El número de tarjeta ingresada no es válido. Inténtelo nuevamente más tarde.");
+    }
+}
+else
+{
+    // La validación fue correcta, aquí irá la lógica de Req10 (transacciones)
+}
+
 // Req6 - Validación Visa
 bool ValidarVisa(string identificador)
 {
