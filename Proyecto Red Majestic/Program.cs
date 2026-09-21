@@ -89,3 +89,26 @@ bool ValidarTarjeta(string identificador, int opcion)
 
     return esValida;
 }
+
+// Función para generar montos aleatorios de transacciones
+static float GenerateRandomTransaction()
+{
+    Random rand = new Random();
+    return (float)rand.NextDouble() * 1000;
+}
+
+// Req11 - Transacciones Visa
+float[] ObtenerTransaccionesVisa(string identificador)
+{
+    float[] transacciones = new float[5];
+
+    if (ValidarVisa(identificador))
+    {
+        for (int i = 0; i < transacciones.Length; i++)
+        {
+            transacciones[i] = GenerateRandomTransaction();
+        }
+    }
+
+    return transacciones;
+}
